@@ -70,18 +70,20 @@ const App: Component = () => {
   const eyeDropper = new EyeDropper();
 
   const trigger = () => {
+    console.log('here');
     eyeDropper
       .open()
       .then((result: { sRGBHex: string }) => {
-        const withoutFirstAndLast = result.sRGBHex
-          .replace('rgb', '')
-          .slice(1, -1);
-        const [r, g, b] = withoutFirstAndLast.split(',').map((row) => +row);
-        const hex = rgbToHex(r, g, b);
+        console.log(result);
+        // const withoutFirstAndLast = result.sRGBHex
+        //   .replace('rgb', '')
+        //   .slice(1, -1);
+        // const [r, g, b] = withoutFirstAndLast.split(',').map((row) => +row);
+        // const hex = rgbToHex(r, g, b);
 
         setColor(() => {
           return {
-            hex,
+            hex: result.sRGBHex,
             rgb: result.sRGBHex,
           };
         });
